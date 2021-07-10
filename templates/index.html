@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Satellite Management</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    {% load static %}
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+    <!-- script
+    ================================================== -->
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <script src="{% static 'js/pace.min.js' %}"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+
+</head>
+
+<body id="top">
+
+<!-- pageheader
+================================================== -->
+<section class="s-pageheader s-pageheader--home">
+
+    <header class="header">
+        <div class="header__content row">
+
+            <div class="header__logo">
+                <a class="logo" href="">
+                    <img src="{% static 'img/satellite2.png' %}" alt="Homepage">
+                </a>
+            </div> <!-- end header__logo -->
+
+            <a class="header__search-trigger" href="#0"></a>
+
+            <div class="header__search">
+
+                <form role="search" method="POST" class="header__search-form" action="/detail/">
+                    {% csrf_token %}
+                    <label for="tags">
+                        <span class="hide-content">Search for:</span>
+                        <input type="search" class="search-field" name="search" title="Search for:" style="color: white">
+                    </label>
+                    <input type="submit" class="search-submit" value="Search">
+                </form>
+
+                <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
+
+            </div>  <!-- end header__search -->
+            <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+
+            <nav class="header__nav-wrap">
+
+                <h2 class="header__nav-heading h6">Site Navigation</h2>
+
+                <ul class="header__nav">
+                    <li class="current"><a href=" " title="">Home</a></li>
+                    <li class="has-children">
+                        <a href="#0" title="">Categories</a>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'category' 'Sun-Synchronous' %}">Sun-Synchronous</a></li>
+                            <li><a href=" {% url 'category' 'Polar' %} ">Polar</a></li>
+                            <li><a href=" {% url 'category' 'Non-Polar Inclined' %} ">Non-Polar Inclined</a></li>
+                            <li><a href="{% url 'category' 'Molniya' %}">Molniya</a></li>
+                            <li><a href="{% url 'category' 'Cislunar' %}">Cislunar</a></li>
+                            <li><a href=" {% url 'category' 'Deep Highly Eccentric' %} ">Deep Highly Eccentric</a></li>
+                            <li><a href="{% url 'category' 'Equatorial' %}">Equatorial</a></li>
+                            <li><a href="{% url 'category' 'Elliptical' %}">Elliptical</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/gallery" title="">Gallery</a></li>
+                    <li><a href="/about" title="">About</a></li>
+                    {% if usr %}
+                        <li><a> {{ usr }} </a></li>
+                        <li><a href="/logout" title="">Log out</a></li>
+                    {%  else %}
+                        <li><a href="/login" title="">Log in</a></li>
+                    {%  endif %}
+                </ul> <!-- end header__nav -->
+
+                <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+            </nav> <!-- end header__nav-wrap -->
+            <h1 style="color: white">{{ msg }}</h1>
+        </div> <!-- header-content -->
+    </header> <!-- header -->
+
+
+    <div class="pageheader-content row">
+        <div class="col-full">
+
+            <div class="featured">
+                <div class="featured__column featured__column--big">
+                    <div class="entry" style="background-image:url('/static/img/thumbs/featured/sun.jpg');">
+
+                        <div class="entry__content">
+                            <span class="entry__category"><a href="/gallery">Gallery</a></span>
+
+                            <h1><a href="/gallery" title="">Images taken from Satellites.</a></h1>
+
+                        </div> <!-- end entry__content -->
+
+                    </div> <!-- end entry -->
+                </div> <!-- end featured__big -->
+
+                <div class="featured__column featured__column--small">
+
+                    <div class="entry" style="background-image:url('/static/img/thumbs/featured/iss.jpg');">
+
+                        <div class="entry__content">
+                            <span class="entry__category"><a href="/manage">Management</a></span>
+
+                            <h1><a href="/manage" title="">Details about all Satellites.</a></h1>
+
+                        </div>
+
+                    </div>
+
+                    <div class="entry" style="background-image:url('/static/img/thumbs/featured/Sat.jpg');">
+
+                        <div class="entry__content">
+                            <span class="entry__category"><a href="/about">About</a></span>
+
+                            <h1><a href="/about" title="">How Satellites work?</a></h1>
+
+                        </div> <!-- end entry__content -->
+
+                    </div> <!-- end entry -->
+
+                </div> <!-- end featured__small -->
+            </div> <!-- end featured -->
+
+        </div> <!-- end col-full -->
+    </div> <!-- end pageheader-content row -->
+
+</section> <!-- end s-pageheader -->
+
+
+<!-- s-content
+================================================== -->
+<section class="s-content">
+
+    <div class="row masonry-wrap">
+        <div class="masonry">
+
+            <div class="grid-sizer"></div>
+
+            <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                <div class="entry__thumb">
+                    <a href="/sat_det" class="entry__thumb-link">
+                        <img src="{% static 'img/thumbs/about/spud.jpg' %}">
+                    </a>
+                </div>
+
+                <div class="entry__text">
+                    <div class="entry__header">
+
+                        <h1 class="entry__title"><a href="/sat_det">Sputnik 1</a></h1>
+
+                    </div>
+                    <div class="entry__excerpt">
+
+                        <p>
+                            Sputnik 1 was the first artificial Earth satellite. The Soviet Union launched it into an
+                            elliptical low Earth orbit on 4 October 1957, orbiting for three weeks before its batteries
+                            died.
+                        </p>
+
+                    </div>
+                </div>
+
+            </article> <!-- end article -->
+
+            <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                <div class="entry__text">
+                    <div class="entry__header">
+
+                        <h1 class="entry__title"><a href="{% url 'link' 'DaVinci' %}"> DaVinci </a></h1>
+
+                    </div>
+                    <div class="entry__excerpt">
+
+                        <p>
+                            Teach students about radio waves, aeronautical engineering, space propulsion, and geography
+                            by sending a communication signal to schools around the world.
+                        </p>
+
+                    </div>
+                    <div class="entry__meta">
+                            <span class="entry__meta-links">
+                                <a href=" {% url 'category' 'Polar' %} ">Polar</a>
+                            </span>
+                    </div>
+                </div>
+
+            </article> <!-- end article -->
+
+            <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                <div class="entry__thumb">
+                    <a href="{% url 'link' 'Jason 2 ' %}" class="entry__thumb-link">
+                        <img src="{% static 'img/thumbs/about/Jason-2.jpg' %}" alt="">
+                    </a>
+                </div>
+
+                <div class="entry__text">
+                    <div class="entry__header">
+
+                        <h1 class="entry__title"><a href="{% url 'link' 'Jason 2 ' %}"> Jason 2 </a></h1>
+
+                    </div>
+                    <div class="entry__excerpt">
+                        <p>
+                            Monitor sea surface level and wave heights
+                        </p>
+                    </div>
+                    <div class="entry__meta">
+                            <span class="entry__meta-links">
+                                <a href=" {% url 'category' 'Non-Polar Inclined' %} ">Non-Polar Inclined</a>
+                            </span>
+                    </div>
+                </div>
+
+            </article> <!-- end article -->
+
+            <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+
+                <div class="entry__text">
+                    <div class="entry__header">
+
+                        <h1 class="entry__title"><a href="{% url 'link' 'MicroDragon' %}">MicroDragon</a></h1>
+
+                    </div>
+                    <div class="entry__excerpt">
+                        <p>
+                            Will monitor the world's oceans to examine fishing grounds and search for disasters such as
+                            oil spills; will also measure aerosols, microscopic particles suspended in Earth.
+                        </p>
+                    </div>
+                    <div class="entry__meta">
+                            <span class="entry__meta-links">
+                                <a href=" {% url 'category' 'Sun-Synchronous' %} ">Sun-Synchronous</a>
+                            </span>
+                    </div>
+                </div>
+
+            </article> <!-- end article -->
+
+            <article class="masonry__brick entry format-standard" data-aos="fade-up">
+                <div class="entry__thumb">
+                    <a href="{% url 'link' 'Kalpana-1 (Metsat-1)' %}" class="entry__thumb-link">
+                        <img src="{% static 'img/thumbs/about/kalpana1.jpg' %}" alt="">
+                    </a>
+                </div>
+
+                <div class="entry__text">
+                    <div class="entry__header">
+
+                        <h1 class="entry__title"><a href="{% url 'link' 'Kalpana-1 (Metsat-1)' %}">Kalpana-1
+                            (Metsat-1)</a></h1>
+
+                    </div>
+                    <div class="entry__excerpt">
+                        <p>
+                            Carries a VHRR (Very High Resolution Radiometer); Data Relay Transponder.
+                        </p>
+                    </div>
+                </div>
+
+            </article> <!-- end article -->
+
+            <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                <div class="entry__thumb">
+                    <a href="{% url 'link' 'International Space Station (ISS [first element Zarya])' %}"
+                       class="entry__thumb-link">
+                        <img src="{% static 'img/thumbs/featured/iss.jpg' %}">
+                    </a>
+                </div>
+
+                <div class="entry__text">
+                    <div class="entry__header">
+
+                        <h1 class="entry__title"><a
+                                href="{% url 'link' 'International Space Station (ISS [first element Zarya])' %}">International
+                            Space Station</a></h1>
+
+                    </div>
+                    <div class="entry__excerpt">
+                        <p>
+                            The ISS serves as a microgravity and space environment research laboratory in which crew
+                            members conduct experiments in biology, human biology, physics, astronomy, meteorology, and
+                            other fields.
+                        </p>
+                    </div>
+                    <div class="entry__meta">
+                            <span class="entry__meta-links">
+                                <a href=" {% url 'category' 'Non-Polar Inclined' %} ">Non-Polar Inclined</a>
+                            </span>
+                    </div>
+                </div>
+
+            </article> <!-- end article -->
+
+            <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                <div class="entry__text">
+                    <div class="entry__header">
+
+                        <h1 class="entry__title"><a href="{% url 'link' 'Odin ' %}">Odin</a></h1>
+
+                    </div>
+                    <div class="entry__excerpt">
+                        <p>
+                            Originally two scientific disciplines on a single spacecraft in studies of star
+                            formation/early solar system (astronomy) and of the mechanisms behind the depletion of the
+                            ozone layer in the earth atmosphere and the effects of global warming (aeronomy); astronomy
+                            mission has ended.
+                        </p>
+                    </div>
+
+                    <div class="entry__meta">
+                            <span class="entry__meta-links">
+                                <a href=" {% url 'category' 'Sun-Synchronous' %} ">Sun-Synchronous</a>
+                            </span>
+                    </div>
+                </div>
+
+            </article> <!-- end article -->
+
+            <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                <div class="entry__thumb">
+                    <a href="{% url 'link' 'Hubble Space Telescope (HST, Space Telescope)' %}"
+                       class="entry__thumb-link">
+                        <img src="{% static 'img/thumbs/about/hubble.jpg' %}">
+                    </a>
+                </div>
+
+                <div class="entry__text">
+                    <div class="entry__header">
+
+                        <h1 class="entry__title"><a
+                                href="{% url 'link' 'Hubble Space Telescope (HST, Space Telescope)' %}">Hubble Space
+                            Telescope</a></h1>
+
+                    </div>
+                    <div class="entry__excerpt">
+                        <p>
+                            Hubble has an unobstructed view of the universe. Scientists have used Hubble to observe the
+                            most distant stars and galaxies as well as the planets in our solar system.The Hubble Space
+                            Telescope is named in honor of astronomer Edwin Hubble.
+                        </p>
+                    </div>
+                    <div class="entry__meta">
+                            <span class="entry__meta-links">
+                                <a href=" {% url 'category' 'Non-Polar Inclined' %} ">Non-Polar Inclined</a>
+                            </span>
+                    </div>
+                </div>
+
+            </article>
+
+
+            <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                <div class="entry__text">
+                    <div class="entry__header">
+
+                        <h1 class="entry__title"><a
+                                href="{% url 'link' 'Sapphire (Space Surveillance Mission of Canada)' %}">Sapphire</a>
+                        </h1>
+
+                    </div>
+                    <div class="entry__excerpt">
+                        <p>
+                            Radar imaging satellite. Can measure moisture in soil to 2 meters.
+                        </p>
+                    </div>
+                    <div class="entry__meta">
+                            <span class="entry__meta-links">
+                                <a href=" {% url 'category' 'Non-Polar Inclined' %} ">Non-Polar Inclined</a>
+                            </span>
+                    </div>
+                </div>
+
+            </article> <!-- end article -->
+
+            <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                <div class="entry__text">
+                    <div class="entry__header">
+
+                        <h1 class="entry__title"><a href="{% url 'link' 'Seahawk-1' %}">Seahawk-1</a></h1>
+
+                    </div>
+                    <div class="entry__excerpt">
+                        <p>
+                            Will image the world's ocean for color (SOCON: Sustained Ocean Color Observations with
+                            Nanosatellites) to assess health. Prototype for a larger constellation.
+                        </p>
+                    </div>
+                    <div class="entry__meta">
+                            <span class="entry__meta-links">
+                                <a href=" {% url 'category' 'Sun-Synchronous' %} ">Sun-Synchronous</a>
+                            </span>
+                    </div>
+                </div>
+
+            </article> <!-- end article -->
+
+            <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                <div class="entry__text">
+                    <div class="entry__header">
+
+                        <h1 class="entry__title"><a
+                                href="{% url 'link' 'SeeMe (Space Enabled Effects for Military Engagements satellite)' %}">SeeMe
+                            (Space Enabled Effects for Military Engagements satellite)</a></h1>
+
+                    </div>
+                    <div class="entry__excerpt">
+                        <p>
+                            Real time situational awareness for troops on the ground with handheld devices. Possible
+                            constellation consisting of about 24 satellites.
+                        </p>
+                    </div>
+                    <div class="entry__meta">
+                            <span class="entry__meta-links">
+                                <a href=" {% url 'category' 'Sun-Synchronous' %} ">Sun-Synchronous</a>
+                            </span>
+                    </div>
+                </div>
+
+            </article> <!-- end article -->
+
+            <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                <div class="entry__text">
+                    <div class="entry__header">
+
+                        <h1 class="entry__title"><a
+                                href="{% url 'link' 'OOREOS (Organism Organic Exposure to Orbital Stresses, USA 219)' %}">OOREOS
+                            (OrganismOrganic Exposure to Orbital Stresses)</a></h1>
+
+                    </div>
+                    <div class="entry__excerpt">
+                        <p>
+                            Carries two biological experiments - one will test live microorganisms, the other inanimate
+                            organic samples, to see how they react to conditions in space for six months.
+                        </p>
+                    </div>
+                    <div class="entry__meta">
+                            <span class="entry__meta-links">
+                                <a href=" {% url 'category' 'Polar' %} ">Polar</a>
+                            </span>
+                    </div>
+                </div>
+
+            </article> <!-- end article -->
+
+            <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                <div class="entry__text">
+                    <div class="entry__header">
+
+                        <h1 class="entry__title"><a href="{% url 'link' 'INSAT 4A (Indian National Satellite)' %}">INSAT
+                            4A (Indian National Satellite)</a></h1>
+
+                    </div>
+                    <div class="entry__excerpt">
+                        <p>
+                            12 Ku-band, 12 C-band transponders for data and TV services.
+                        </p>
+                    </div>
+                </div>
+
+            </article>
+
+
+        </div> <!-- end masonry -->
+    </div> <!-- end masonry-wrap -->
+
+</section> <!-- s-content -->
+
+<!-- s-footer
+================================================== -->
+<footer class="s-footer">
+    <div class="s-footer__main">
+        <div class="row">
+
+            <div class="col-md-four mob-full s-footer__sitelinks">
+
+                <h4>Quick Links</h4>
+
+                <ul class="header__nav">
+                    <li class="current"><a href=" " title="">Home</a></li>
+                    <li class="has-children">
+                        <a href="#0" title="">Categories</a>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'category' 'Sun-Synchronous' %}">Sun-Synchronous</a></li>
+                            <li><a href=" {% url 'category' 'Polar' %} ">Polar</a></li>
+                            <li><a href=" {% url 'category' 'Non-Polar Inclined' %} ">Non-Polar Inclined</a></li>
+                            <li><a href="{% url 'category' 'Molniya' %}">Molniya</a></li>
+                            <li><a href="{% url 'category' 'Cislunar' %}">Cislunar</a></li>
+                            <li><a href=" {% url 'category' 'Deep Highly Eccentric' %} ">Deep Highly Eccentric</a></li>
+                            <li><a href="{% url 'category' 'Equatorial' %}">Equatorial</a></li>
+                            <li><a href="{% url 'category' 'Elliptical' %}">Elliptical</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/gallery" title="">Gallery</a></li>
+                    <li><a href="/about" title="">About</a></li>
+                    {% if usr %}
+                        <li><a> {{ usr }} </a></li>
+                        <li><a href="/logout" title="">Log out</a></li>
+                    {%  else %}
+                        <li><a href="/login" title="">Log in</a></li>
+                    {%  endif %}
+                </ul>
+
+            </div> <!-- end s-footer__sitelinks -->
+
+        </div> <!-- end s-footer__subscribe -->
+
+    </div>
+    </div> <!-- end s-footer__main -->
+
+    <div class="s-footer__bottom">
+        <div class="row">
+            <div class="col-full">
+
+                <div class="go-top">
+                    <a class="smoothscroll" title="Back to Top" href="#top"></a>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end s-footer__bottom -->
+
+</footer> <!-- end s-footer -->
+
+
+<!--preloader
+================================================== -->
+<div id="preloader">
+    <div id="loader">
+        <div class="line-scale">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Java Script
+================================================== -->
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

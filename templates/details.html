@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    {% load static %}
+    <title>Satellite Management</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!-- script
+    ================================================== -->
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <script src="{% static 'js/pace.min.js' %}"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+
+</head>
+
+<body id="top">
+
+<!-- pageheader
+================================================== -->
+<div class="s-pageheader">
+
+    <header class="header">
+        <div class="header__content row">
+
+            <div class="header__logo">
+                <a class="logo" href="/">
+                    <img src="{% static 'img/satellite2.png' %}" alt="Homepage">
+                </a>
+            </div> <!-- end header__logo -->
+
+            <!-- end header__social -->
+
+            <a class="header__search-trigger" href="#0"></a>
+
+            <div class="header__search">
+
+                <form role="search" method="POST" class="header__search-form" action="/detail/">
+                    {% csrf_token %}
+                    <label for="tags">
+                        <span class="hide-content">Search for:</span>
+                        <input type="search" class="search-field" name="search" title="Search for:"
+                               style="color: white">
+                    </label>
+                    <input type="submit" class="search-submit" value="Search">
+                </form>
+
+                <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
+
+            </div>  <!-- end header__search -->
+
+
+            <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+
+            <nav class="header__nav-wrap">
+
+                <h2 class="header__nav-heading h6">Site Navigation</h2>
+
+                <ul class="header__nav">
+                    <li><a href="{% url 'home' %}" title="">Home</a></li>
+                    <li class="has-children">
+                        <a href="#0" title="">Categories</a>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'category' 'Sun-Synchronous' %}">Sun-Synchronous</a></li>
+                            <li><a href=" {% url 'category' 'Polar' %} ">Polar</a></li>
+                            <li><a href=" {% url 'category' 'Non-Polar Inclined' %} ">Non-Polar Inclined</a></li>
+                            <li><a href="{% url 'category' 'Molniya' %}">Molniya</a></li>
+                            <li><a href="{% url 'category' 'Cislunar' %}">Cislunar</a></li>
+                            <li><a href=" {% url 'category' 'Deep Highly Eccentric' %} ">Deep Highly Eccentric</a></li>
+                            <li><a href="{% url 'category' 'Equatorial' %}">Equatorial</a></li>
+                            <li><a href="{% url 'category' 'Elliptical' %}">Elliptical</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/gallery" title="">Gallery</a></li>
+                    <li><a href="/about" title="">About</a></li>
+                    {% if usr %}
+                        <li><a> {{ usr }} </a></li>
+                        <li><a href="/logout" title="">Log out</a></li>
+                    {% else %}
+                        <li><a href="/login" title="">Log in</a></li>
+                    {% endif %}
+                </ul> <!-- end header__nav -->
+
+                <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+            </nav> <!-- end header__nav-wrap -->
+
+        </div> <!-- header-content -->
+    </header> <!-- header -->
+
+</div> <!-- end s-pageheader -->
+
+<!-- s-content
+================================================== -->
+{% if a %}
+    <div class="s-content s-content--narrow">
+        <div class="row">
+
+            <div class="s-content__header col-full">
+                <h1 class="s-content__header-title">
+                    {{ a.Name }}
+                </h1>
+            </div> <!-- end s-content__header -->
+
+        </div>
+    </div>
+    <section class="s-content" style="padding: 1px;">
+
+        <div class="row masonry-wrap">
+            <div class="masonry">
+
+                <div class="grid-sizer"></div>
+
+                <!-- end article -->
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                    <div class="entry__text">
+                        <div class="entry__header">
+
+                            <h1 class="entry__title">{{ a.Name }}.</h1>
+
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                {{ a.comments }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                {% if a.country %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Made by</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.Country }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.ownedby %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Owned by.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.ownedby }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.operator %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Operated by</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.operator }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.users %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Used for.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.users }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.purpose %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Purpose.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.purpose }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.detpurpose %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Detailed Purpose.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.detpurpose }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.orbit %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Class Of Orbit.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.orbit }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.orbit_type %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Type of orbit.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.orbit_type }}.
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.launch_site %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Launch site.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.launch_site }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.period %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Orbital Period .</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.period }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.GEO_longitude %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">GEO Longitude.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.GEO_longitude }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.inclination %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Inclination.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.inclination }}.
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.eccentricity %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Eccentricity.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.eccentricity }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.perigee %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Perigee altitude.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.perigee }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.apogee %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Apogee altitude.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.apogee }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.launch_mass %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Launch Mass.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.launch_mass }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.dry_mass %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Dry Mass.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.dry_mass }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.power %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Power (in watts).</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.power }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.launch_date %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Launch Date.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.launch_date }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.Expected_lifetime %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Expected Lifetime.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.Expected_lifetime }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.contractor %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Contractor.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.contractor }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.country_of_contractor %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Country Of Contractor.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.country_of_contractor }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.launch_vehicle %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Launch Vehicle.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.launch_vehicle }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.COSPAR_number %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">COSPAR Number.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.COSPAR_number }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.NORAD_number %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">NORAD Number.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.NORAD_number }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+                {% if a.orbital_data_source %}
+                    <article class="masonry__brick entry format-standard" data-aos="fade-up">
+
+                        <div class="entry__text">
+                            <div class="entry__header">
+
+                                <h1 class="entry__title">Orbital Data Source.</h1>
+
+                            </div>
+                            <div class="entry__excerpt">
+
+                                <p>
+                                    {{ a.orbital_data_source }}
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </article>
+                {% endif %}
+            </div> <!-- end masonry -->
+        </div> <!-- end masonry-wrap -->
+
+    </section> <!-- s-content -->
+{% else %}
+    <div class="s-content s-content--narrow">
+        <div class="row">
+
+            <div class="s-content__header col-full">
+                <h1 class="s-content__header-title">
+                    Satellite could not be found!
+                </h1>
+            </div> <!-- end s-content__header -->
+
+        </div>
+    </div>
+
+{% endif %}
+<!-- s-footer
+================================================== -->
+<footer class="s-footer">
+
+    <div class="s-footer__main">
+        <div class="row">
+
+            <div class="col-md-four mob-full s-footer__sitelinks">
+
+                <h4>Quick Links</h4>
+
+                <ul class="header__nav">
+                    <li class="current"><a href="{% url 'home' %}" title="">Home</a></li>
+                    <li class="has-children">
+                        <a href="#0" title="">Categories</a>
+                        <ul class="sub-menu">
+                            <li><a href="category.html">Communications Satellite</a></li>
+                            <li><a href="category.html">Remote Sensing Satellite</a></li>
+                            <li><a href="category.html">Navigation Satellite</a></li>
+                            <li><a href="category.html">Geocentric Orbit type staellites</a></li>
+                            <li><a href="category.html">Geostationary Satellites</a></li>
+                            <li><a href="category.html">Drone Satellite</a></li>
+                            <li><a href="category.html">Ground Satellite</a></li>
+                            <li><a href="category.html">Polar Satellite</a></li>
+                            <li><a href="category.html">Nano Satellites, CubeSats and SmallSats</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/gallery" title="">Gallery</a></li>
+                    <li><a href="/about" title="">About</a></li>
+                    {% if usr %}
+                        <li><a> {{ usr }} </a></li>
+                        <li><a href="/logout" title="">Log out</a></li>
+                    {% else %}
+                        <li><a href="/login" title="">Log in</a></li>
+                    {% endif %}
+                </ul>
+
+            </div> <!-- end s-footer__sitelinks -->
+
+        </div> <!-- end s-footer__subscribe -->
+
+    </div>
+    </div> <!-- end s-footer__main -->
+
+    <div class="s-footer__bottom">
+        <div class="row">
+            <div class="col-full">
+
+                <div class="go-top">
+                    <a class="smoothscroll" title="Back to Top" href="#top"></a>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end s-footer__bottom -->
+
+</footer> <!-- end s-footer -->
+
+
+<!-- preloader
+================================================== -->
+<div id="preloader">
+    <div id="loader">
+        <div class="line-scale">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Java Script
+================================================== -->
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

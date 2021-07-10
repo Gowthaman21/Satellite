@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    {% load static %}
+    <title>Satellite Management</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!-- script
+    ================================================== -->
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <script src="{% static 'js/pace.min.js' %}"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+
+</head>
+
+<body id="top">
+
+    <!-- pageheader
+    ================================================== -->
+    <div class="s-pageheader">
+
+        <header class="header">
+            <div class="header__content row">
+
+                <div class="header__logo">
+                    <a class="logo" href="/">
+                        <img src="{% static 'img/satellite2.png' %}" alt="Homepage">
+                    </a>
+                </div> <!-- end header__logo -->
+
+                <!-- end header__social -->
+
+                <a class="header__search-trigger" href="#0"></a>
+
+                <div class="header__search">
+
+                    <form role="search" method="POST" class="header__search-form" action="/detail/">
+                        {% csrf_token %}
+                        <label for="tags">
+                            <span class="hide-content">Search for:</span>
+                            <input type="search" class="search-field" name="search" title="Search for:" style="color: white">
+                        </label>
+                        <input type="submit" class="search-submit" value="Search">
+                    </form>
+        
+                    <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
+
+                </div>  <!-- end header__search -->
+
+
+                <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+
+                <nav class="header__nav-wrap">
+
+                    <h2 class="header__nav-heading h6">Site Navigation</h2>
+
+                    <ul class="header__nav">
+                        <li><a href="{% url 'home' %}" title="">Home</a></li>
+                        <li class="has-children">
+                            <a href="#0" title="">Categories</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'category' 'Sun-Synchronous'  %}">Sun-Synchronous</a></li>
+                                <li><a href=" {% url 'category' 'Polar'  %} ">Polar</a></li>
+                                <li><a href=" {% url 'category' 'Non-Polar Inclined'  %} ">Non-Polar Inclined</a></li>
+                                <li><a href="{% url 'category' 'Molniya'  %}">Molniya</a></li>
+                                <li><a href="{% url 'category' 'Cislunar'  %}">Cislunar</a></li>
+                                <li><a href=" {% url 'category' 'Deep Highly Eccentric'  %} ">Deep Highly Eccentric</a></li>
+                                <li><a href="{% url 'category' 'Equatorial'  %}">Equatorial</a></li>
+                                <li><a href="{% url 'category' 'Elliptical'  %}">Elliptical</a></li>
+                            </ul>
+                               </li>
+                        <li><a href="/gallery" title="">Gallery</a></li>
+                        <li><a href="/about" title="">About</a></li>
+                        <li><a href="/login" title="">Log in</a></li>
+                    </ul> <!-- end header__nav -->
+
+                    <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+                </nav> <!-- end header__nav-wrap -->
+
+            </div> <!-- header-content -->
+        </header> <!-- header -->
+
+    </div> <!-- end s-pageheader -->
+
+    <!-- s-content
+    ================================================== -->
+    <div class="s-content s-content--narrow">
+
+        <div class="row">
+
+            <div class="s-content__header col-full">
+                <h1 class="s-content__header-title">
+                    Sputnik 1
+                </h1>
+            </div> <!-- end s-content__header -->
+           
+            <div class="s-content__media fill col-full">
+                <div class="s-content__post-thumb">
+                    <img src="{% static 'img/thumbs/about/Sputnik-695836.jpg' %}">
+                         <p> Sputnik 1 was the first artificial Earth satellite. The Soviet Union launched it into an elliptical low Earth orbit on 4 October 1957.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="s-content" style="padding: 1px;">
+        
+        <div class="row masonry-wrap">
+            <div class="masonry">
+
+                <div class="grid-sizer"></div>
+
+                 <!-- end article -->
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Mission type.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                Technology demonstration.
+                            </p>
+                            
+                        </div>
+                       
+                    </div>
+    
+                </article>
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Sputnik 1.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                Sputnik 1 was the first artificial Earth satellite. The Soviet Union launched it into an elliptical low Earth orbit on 4 October 1957, orbiting for three weeks before its batteries died.
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Mission duration.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                21 days.
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+               
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Orbits completed.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                1440.
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+                
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Instruments.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                Radio transmitter<br>
+                                (20.005–40.002 MHz).
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Launch mass.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                83.6 kg (184 lb).
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Dimensions.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                58 cm (23 in) diameter.
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Power.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                1 watt.
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Rocket.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                Sputnik 8K71PS.
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Launch site.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                The Baikonur Cosmodrome. It is a spaceport located in an area of southern Kazakhstan leased to Russia..
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Orbital Period	.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                96.2 minutes.
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+                
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Regime.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                Low Earth.
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Semi-major axis.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                6,955 km (4,322 mi).
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Eccentricity.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                0.05201.
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Perigee altitude.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                215 km (134 mi).
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+
+                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+    
+                    <div class="entry__text">
+                        <div class="entry__header">
+                            
+                            <h1 class="entry__title">Apogee altitude.</h1>
+                            
+                        </div>
+                        <div class="entry__excerpt">
+
+                            <p>
+                                939 km (583 mi).
+                            </p>
+                            
+                        </div>
+                    </div>
+    
+                </article>
+
+            </div> <!-- end masonry -->
+        </div> <!-- end masonry-wrap -->
+
+    </section> <!-- s-content -->
+
+    <!-- s-footer
+    ================================================== -->
+    <footer class="s-footer">
+
+        <div class="s-footer__main">
+            <div class="row">
+                
+                <div class="col-md-four mob-full s-footer__sitelinks">
+                        
+                    <h4>Quick Links</h4>
+
+                    <ul class="header__nav">
+                        <li class="current"><a href="{% url 'home' %}" title="">Home</a></li>
+                        <li class="has-children">
+                            <a href="#0" title="">Categories</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'category' 'Sun-Synchronous'  %}">Sun-Synchronous</a></li>
+                                <li><a href=" {% url 'category' 'Polar'  %} ">Polar</a></li>
+                                <li><a href=" {% url 'category' 'Non-Polar Inclined'  %} ">Non-Polar Inclined</a></li>
+                                <li><a href="{% url 'category' 'Molniya'  %}">Molniya</a></li>
+                                <li><a href="{% url 'category' 'Cislunar'  %}">Cislunar</a></li>
+                                <li><a href=" {% url 'category' 'Deep Highly Eccentric'  %} ">Deep Highly Eccentric</a></li>
+                                <li><a href="{% url 'category' 'Equatorial'  %}">Equatorial</a></li>
+                                <li><a href="{% url 'category' 'Elliptical'  %}">Elliptical</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/gallery" title="">Gallery</a></li>
+                        <li><a href="/about" title="">About</a></li>
+                        <li><a href="/login" title="">Log in</a></li>
+                    </ul>
+
+                </div> <!-- end s-footer__sitelinks -->
+
+                </div> <!-- end s-footer__subscribe -->
+
+            </div>
+        </div> <!-- end s-footer__main -->
+
+        <div class="s-footer__bottom">
+            <div class="row">
+                <div class="col-full">
+
+                    <div class="go-top">
+                        <a class="smoothscroll" title="Back to Top" href="#top"></a>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end s-footer__bottom -->
+
+    </footer> <!-- end s-footer -->
+
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader">
+            <div class="line-scale">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

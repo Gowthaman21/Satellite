@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    {% load static %}
+	<title>SIGN UP</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/opensans-font.css' %}">
+	<!-- Jquery -->
+	<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+
+    <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+
+</head>
+<body class="form-v7">
+	<div class="page-content" style="background-color: #151515;">
+		<div class="form-v7-content">
+			<div class="form-left">
+				<img src="{% static 'img/807536.jpg' %}" alt="form">
+				<p class="text-1">Log in</p>
+				<p class="text-2">Privacy policy & Term of service</p>
+			</div>
+            <p class="text-center" style="text-align: center;">{{ msg }}</p>
+			<form class="form-detail" action="{% url 'login' %}" method="post" id="myform">
+
+                {% csrf_token %}
+				<div class="form-row">
+					<label for="username">USERNAME</label>
+					<input type="text" name="username" value="{{username}}" id="username" class="input-text"><p>{{usr_err}}</p>
+				</div>
+				
+				<div class="form-row">
+					<label for="password">PASSWORD</label>
+					<input type="password" name="pwd" id="password" class="input-text" required><p>{{pwd_err}}</p>
+				</div>
+
+
+                	<div class="form-row-last">
+					<input type="submit" name="login" class="register" value="Log in">
+					<p>Or<a href="/signin">Sign Up</a></p>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Satellite Management</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    {% load static %}
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!-- script
+    ================================================== -->
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <script src="{% static 'js/pace.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/gjs/main.js' %}"></script>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap"
+          rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+    <!-- Main Stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/gstyle.css' %}"/>
+
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+
+</head>
+<body id="top">
+<!-- Page Preloder -->
+
+
+<!-- Header section  -->
+<div class="s-pageheader">
+
+    <header class="header">
+        <div class="header__content row">
+
+            <div class="header__logo">
+                <a class="logo" href="/">
+                    <img src="{% static 'img/satellite2.png' %}" alt="Homepage">
+                </a>
+            </div> <!-- end header__logo -->
+
+            <!-- end header__social -->
+
+            <a class="header__search-trigger" href="#0"></a>
+
+            <div class="header__search">
+
+                <form role="search" method="POST" class="header__search-form" action="/detail/">
+                    {% csrf_token %}
+                    <label for="tags">
+                        <span class="hide-content">Search for:</span>
+                        <input type="search" class="search-field" name="search" title="Search for:" style="color: white">
+                    </label>
+                    <input type="submit" class="search-submit" value="Search">
+                </form>
+
+                <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
+
+            </div>  <!-- end header__search -->
+
+
+            <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+
+            <nav class="header__nav-wrap">
+
+                <h2 class="header__nav-heading h6">Site Navigation</h2>
+
+                <ul class="header__nav">
+                    <li><a href="{% url 'home' %}" title="">Home</a></li>
+                    <li class="has-children">
+                        <a href="#0" title="">Categories</a>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'category' 'Sun-Synchronous' %}">Sun-Synchronous</a></li>
+                            <li><a href=" {% url 'category' 'Polar' %} ">Polar</a></li>
+                            <li><a href=" {% url 'category' 'Non-Polar Inclined' %} ">Non-Polar Inclined</a></li>
+                            <li><a href="{% url 'category' 'Molniya' %}">Molniya</a></li>
+                            <li><a href="{% url 'category' 'Cislunar' %}">Cislunar</a></li>
+                            <li><a href=" {% url 'category' 'Deep Highly Eccentric' %} ">Deep Highly Eccentric</a></li>
+                            <li><a href="{% url 'category' 'Equatorial' %}">Equatorial</a></li>
+                            <li><a href="{% url 'category' 'Elliptical' %}">Elliptical</a></li>
+                        </ul>
+                    </li>
+                    <li class="current"><a href="" title="">Gallery</a></li>
+                    <li><a href="/about" title="">About</a></li>
+                    {% if usr %}
+                        <li><a> {{ usr }} </a></li>
+                        <li><a href="/logout" title="">Log out</a></li>
+                    {%  else %}
+                        <li><a href="/login" title="">Log in</a></li>
+                    {%  endif %}
+                </ul> <!-- end header__nav -->
+
+                <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+            </nav> <!-- end header__nav-wrap -->
+
+        </div> <!-- header-content -->
+    </header> <!-- header -->
+
+</div> <!-- end s-pageheader -->
+
+<div class="row">
+
+    <div class="s-content__header col-full">
+        <h1 class="s-content__header-title" style="color: white;">
+            Images taken from Satellites.
+        </h1>
+    </div>
+</div>
+
+<!-- Hero section  -->
+<div class="hero-section">
+
+    <div class="hero-slider owl-carousel">
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/1.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">Earth rising above the lunar horizon May 1969</h2>
+            </a>
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/2.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">An eclipse of the Sun from Apollo 12.</h2>
+            </a>
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/3.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">Meteor Crater, Arizona, USA</h2>
+            </a>
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/4.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">Earth's Moon, Venus, Jupiter and the crescent of Earth at the top.</h2>
+            </a>
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/5.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">Crescent Earth from Apollo 12</h2>
+            </a>
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/6.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">The Earth from the Moon</h2>
+            </a>
+        </div>
+    </div>
+    <div class="hero-slider owl-carousel">
+
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/7.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">Earth and Moon from 114 Million Miles</h2>
+            </a>
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/8.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">Jupiter’s Great Red Spot</h2>
+            </a>
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/9.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">Saturn and its rings</h2>
+            </a>
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/10.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">Uranus, seen by Voyager 2 spacecraft</h2>
+            </a>
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/11.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">Neptune from Voyager 2</h2>
+            </a>
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/12.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link"> A "shooting star" crosses the Milky Way galaxy</h2>
+            </a>
+        </div>
+
+    </div>
+    <div class="hero-slider owl-carousel">
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/13.png' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">Saturn's moons Rhea and Janus tango on opposite sides</h2>
+            </a>
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/14.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">Curiosity snaps a selfie on Mars</h2>
+            </a>
+
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/15.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">Green auroras clash with orange airglow</h2>
+            </a>
+
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/16.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">A portrait of Saturn's moon Enceladus</h2>
+            </a>
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/17.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">Venus' northern hemisphere</h2>
+            </a>
+
+        </div>
+        <div class="hero-item portfolio-item set-bg" data-setbg=" {% static 'img/gallery/18.jpg' %}">
+            <a href="" class="hero-link" onclick="return false" style="cursor: default">
+                <h2 class="hero-link">A global mosaic of Pluto</h2>
+            </a>
+
+        </div>
+    </div>
+</div>
+<!-- Hero section end  -->
+
+<!-- Intro section   -->
+
+<!-- Intro section end  -->
+
+<!-- Footer section   -->
+<!-- s-footer
+================================================== -->
+<footer class="s-footer">
+
+    <div class="s-footer__main">
+        <div class="row">
+
+            <div class="col-md-four mob-full s-footer__sitelinks">
+
+                <h4>Quick Links</h4>
+
+                <ul class="header__nav">
+                    <li><a href="{% url 'home' %}" title="">Home</a></li>
+                    <li class="has-children">
+                        <a href="#0" title="">Categories</a>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'category' 'Sun-Synchronous' %}">Sun-Synchronous</a></li>
+                            <li><a href=" {% url 'category' 'Polar' %} ">Polar</a></li>
+                            <li><a href=" {% url 'category' 'Non-Polar Inclined' %} ">Non-Polar Inclined</a></li>
+                            <li><a href="{% url 'category' 'Molniya' %}">Molniya</a></li>
+                            <li><a href="{% url 'category' 'Cislunar' %}">Cislunar</a></li>
+                            <li><a href=" {% url 'category' 'Deep Highly Eccentric' %} ">Deep Highly Eccentric</a></li>
+                            <li><a href="{% url 'category' 'Equatorial' %}">Equatorial</a></li>
+                            <li><a href="{% url 'category' 'Elliptical' %}">Elliptical</a></li>
+                        </ul>
+                    </li>
+                    <li class="current"><a href="" title="">Gallery</a></li>
+                    <li><a href="/about" title="">About</a></li>
+                    {% if usr %}
+                        <li><a> {{ usr }} </a></li>
+                        <li><a href="/logout" title="">Log out</a></li>
+                    {%  else %}
+                        <li><a href="/login" title="">Log in</a></li>
+                    {%  endif %}
+                </ul>
+
+            </div> <!-- end s-footer__sitelinks -->
+
+        </div> <!-- end s-footer__subscribe -->
+
+    </div>
+    </div> <!-- end s-footer__main -->
+
+    <div class="s-footer__bottom">
+        <div class="row">
+            <div class="col-full">
+
+                <div class="go-top">
+                    <a class="smoothscroll" title="Back to Top" href="#top"></a>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end s-footer__bottom -->
+
+</footer>
+<!-- Footer section end  -->
+
+<!-- Search model -->
+
+<!-- Search model end -->
+
+<!--====== Javascripts & Jquery ======-->
+<script src="{% static 'js/gjs/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/gjs/jquery.slicknav.min.js' %}"></script>
+<script src="{% static 'js/gjs/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/gjs/main.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Satellite Management</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    {% load static %}
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!-- script
+    ================================================== -->
+    <script src="{% static 'js/modernizr.js' %}"></script>
+    <script src="{% static 'js/pace.min.js' %}"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+
+</head>
+
+<body id="top">
+
+<!-- pageheader
+================================================== -->
+<div class="s-pageheader">
+
+    <header class="header">
+        <div class="header__content row">
+
+            <div class="header__logo">
+                <a class="logo" href="/">
+                    <img src="{% static 'img/satellite2.png' %}" alt="Homepage">
+                </a>
+            </div> <!-- end header__logo -->
+
+            <!-- end header__social -->
+
+            <a class="header__search-trigger" href="#0"></a>
+
+            <div class="header__search">
+
+                <form role="search" method="POST" class="header__search-form" action="/detail/">
+                    {% csrf_token %}
+                    <label>
+                        <span class="hide-content">Search for:</span>
+                        <input type="search" class="search-field" placeholder="Type Keywords" value="" name="search"
+                               title="Search for:" autocomplete="off" style="color:white">
+                    </label>
+                    <input type="submit" class="search-submit" value="Search">
+                </form>
+
+                <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
+
+            </div>  <!-- end header__search -->
+
+
+            <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+
+            <nav class="header__nav-wrap">
+
+                <h2 class="header__nav-heading h6">Site Navigation</h2>
+
+                <ul class="header__nav">
+                    <li><a href="{% url 'home' %}" title="">Home</a></li>
+                    <li class="has-children">
+                        <a href="#0" title="">Categories</a>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'category' 'Sun-Synchronous' %}">Sun-Synchronous</a></li>
+                            <li><a href=" {% url 'category' 'Polar' %} ">Polar</a></li>
+                            <li><a href=" {% url 'category' 'Non-Polar Inclined' %} ">Non-Polar Inclined</a></li>
+                            <li><a href="{% url 'category' 'Molniya' %}">Molniya</a></li>
+                            <li><a href="{% url 'category' 'Cislunar' %}">Cislunar</a></li>
+                            <li><a href=" {% url 'category' 'Deep Highly Eccentric' %} ">Deep Highly Eccentric</a></li>
+                            <li><a href="{% url 'category' 'Equatorial' %}">Equatorial</a></li>
+                            <li><a href="{% url 'category' 'Elliptical' %}">Elliptical</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/gallery" title="">Gallery</a></li>
+                    <li class="current"><a href="/about" title="">About</a></li>
+                    {% if usr %}
+                        <li><a> {{ usr }} </a></li>
+                        <li><a href="/logout" title="">Log out</a></li>
+                    {%  else %}
+                        <li><a href="/login" title="">Log in</a></li>
+                    {%  endif %}
+                </ul> <!-- end header__nav -->
+
+                <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+            </nav> <!-- end header__nav-wrap -->
+
+        </div> <!-- header-content -->
+    </header> <!-- header -->
+
+</div> <!-- end s-pageheader -->
+
+
+<!-- s-content
+================================================== -->
+<section class="s-content s-content--narrow">
+
+    <div class="row">
+
+        <div class="s-content__header col-full">
+            <h1 class="s-content__header-title">
+                What is a Satellite?
+            </h1>
+        </div> <!-- end s-content__header -->
+
+        <div class="s-content__media col-full">
+            <div class="s-content__post-thumb">
+                <img src="{% static 'img/thumbs/about/Jason-2.jpg' %}"
+                     sizes="(max-width: 2000px) 100vw, 2000px" alt="">
+                <p style="text-align:center;">The Jason-2 satellite orbits Earth. It carries tools and sensors to help
+                    scientists study the oceans.</p>
+            </div>
+        </div> <!-- end s-content__media -->
+
+        <div class="col-full s-content__main">
+
+            <p class="lead">A satellite is a moon, planet or machine that orbits a planet or star. For example, Earth is
+                a satellite because it orbits the sun. Likewise, the moon is a satellite because it orbits Earth.
+                Usually, the word "satellite" refers to a machine that is launched into space and moves around Earth or
+                another body in space.</p>
+
+            <p>Earth and the moon are examples of natural satellites. Thousands of artificial, or man-made, satellites
+                orbit Earth. Some take pictures of the planet that help meteorologists predict weather and track
+                hurricanes. Some take pictures of other planets, the sun, black holes, dark matter or faraway galaxies.
+                These pictures help scientists better understand the solar system and universe.
+            </p>
+
+            <p>Still other satellites are used mainly for communications, such as beaming TV signals and phone calls
+                around the world. A group of more than 20 satellites make up the Global Positioning System, or GPS. If
+                you have a GPS receiver, these satellites can help figure out your exact location.
+            </p>
+
+            <div class="row block-1-2 block-tab-full">
+                <div class="col-block">
+                    <h3 class="quarter-top-margin">Why Are Satellites Important?</h3>
+                    <p>The bird's-eye view that satellites have allows them to see large areas of Earth at one time.
+                        This ability means satellites can collect more data, more quickly, than instruments on the
+                        ground.Satellites also can see into space better than telescopes at Earth's surface. That's
+                        because satellites fly above the clouds, dust and molecules in the atmosphere that can block the
+                        view from ground level.With satellites, TV signals and phone calls are sent upward to a
+                        satellite. Then, almost instantly, the satellite can send them back down to different locations
+                        on Earth.</p>
+                </div>
+
+                <div class="col-block">
+                    <h3 class="quarter-top-margin">What Are the Parts of a Satellite?</h3>
+                    <p>Satellites come in many shapes and sizes. But most have at least two parts in common - an antenna
+                        and a power source. The antenna sends and receives information, often to and from Earth. The
+                        power source can be a solar panel or battery. Solar panels make power by turning sunlight into
+                        electricity. Many NASA satellites carry cameras and scientific sensors. Sometimes these
+                        instruments point toward Earth to gather information about its land, air and water. Other times
+                        they face toward space to collect data from the solar system and universe.</p>
+                </div>
+
+                <div class="col-block">
+                    <h3 class="quarter-top-margin">Why Don't Satellites Crash Into Each Other?</h3>
+                    <p>Actually, they can. NASA and other U.S. and international organizations keep track of satellites
+                        in space. Collisions are rare because when a satellite is launched, it is placed into an orbit
+                        designed to avoid other satellites. But orbits can change over time. And the chances of a crash
+                        increase as more and more satellites are launched into space.
+                        <br>In February 2009, two communications satellites - one American and one Russian - collided in
+                        space. This, however, is believed to be the first time two man-made satellites have collided
+                        accidentally.</p>
+                </div>
+
+                <div class="col-block">
+                    <h3 class="quarter-top-margin">How Do Satellites Orbit Earth?</h3>
+                    <p> A satellite orbits Earth when its speed is balanced by the pull of Earth's gravity. Without this
+                        balance, the satellite would fly in a straight line off into space or fall back to Earth.
+                        Satellites orbit Earth at different heights, different speeds and along different paths. The two
+                        most common types of orbit are "geostationary" (jee-oh-STAY-shun-air-ee) and "polar".<br>A
+                        geostationary satellite travels from west to east over the equator. It moves in the same
+                        direction and at the same rate Earth is spinning. <br>Polar-orbiting satellites travel in a
+                        north-south direction from pole to pole. As Earth spins underneath, these satellites can scan
+                        the entire globe, one strip at a time.</p>
+                </div>
+
+                <iframe class="s-content__media col-full"
+                        src="https://cdn.knightlab.com/libs/juxtapose/latest/embed/index.html?uid=03d44e24-e16f-11e5-a524-0e7075bba956"
+                        width="1200" height="600" frameborder="0" sizes="(max-width: 2000px) 100vw, 2000px"></iframe>
+
+            </div>
+
+
+        </div> <!-- end s-content__main -->
+
+    </div> <!-- end row -->
+
+</section> <!-- s-content -->
+
+<!-- s-footer
+================================================== -->
+<footer class="s-footer">
+
+    <div class="s-footer__main">
+        <div class="row">
+
+            <div class="col-md-four mob-full s-footer__sitelinks">
+
+                <h4>Quick Links</h4>
+
+                <ul class="header__nav">
+                    <li><a href="{% url 'home' %}" title="">Home</a></li>
+                    <li class="has-children">
+                        <a href="#0" title="">Categories</a>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'category' 'Sun-Synchronous' %}">Sun-Synchronous</a></li>
+                            <li><a href=" {% url 'category' 'Polar' %} ">Polar</a></li>
+                            <li><a href=" {% url 'category' 'Non-Polar Inclined' %} ">Non-Polar Inclined</a></li>
+                            <li><a href="{% url 'category' 'Molniya' %}">Molniya</a></li>
+                            <li><a href="{% url 'category' 'Cislunar' %}">Cislunar</a></li>
+                            <li><a href=" {% url 'category' 'Deep Highly Eccentric' %} ">Deep Highly Eccentric</a></li>
+                            <li><a href="{% url 'category' 'Equatorial' %}">Equatorial</a></li>
+                            <li><a href="{% url 'category' 'Elliptical' %}">Elliptical</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/gallery" title="">Gallery</a></li>
+                    <li class="current"><a href="" title="">About</a></li>
+                    {% if usr %}
+                        <li><a> {{ usr }} </a></li>
+                        <li><a href="/logout" title="">Log out</a></li>
+                    {%  else %}
+                        <li><a href="/login" title="">Log in</a></li>
+                    {%  endif %}
+                </ul>
+
+            </div> <!-- end s-footer__sitelinks -->
+
+        </div> <!-- end s-footer__subscribe -->
+
+    </div>
+    </div> <!-- end s-footer__main -->
+
+    <div class="s-footer__bottom">
+        <div class="row">
+            <div class="col-full">
+
+                <div class="go-top">
+                    <a class="smoothscroll" title="Back to Top" href="#top"></a>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end s-footer__bottom -->
+
+</footer> <!-- end s-footer -->
+
+
+<!-- preloader
+==================================================
+<div id="preloader">
+    <div id="loader">
+        <div class="line-scale">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>-->
+
+
+<!-- Java Script
+================================================== -->
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
